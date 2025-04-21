@@ -1,0 +1,626 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>Depression Detection</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="{% static 'userstatic/img/core-img/favicon.ico' %}">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'userstatic/style.css' %}">
+    <style>
+        p {
+            color: #fff;
+        }
+
+        .radio-container {
+            text-align: center;
+        }
+
+        .radio-group {
+            display: inline-block;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        label {
+            display: inline-block;
+            margin: 15px;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, border 0.3s, box-shadow 0.3s;
+            border: 2px solid #2980b9;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type="radio"]:checked+label {
+            background-color: #0a2c43;
+            transform: scale(1.25);
+            border-color: #2079b0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        label:hover {
+            background-color: #2079b0;
+            transform: scale(1.30);
+            border-color: #145a8e;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .question {
+            margin-top: 10px;
+        }
+
+        .ptag {
+            margin-bottom: 0px;
+        }
+    </style>
+   <style>
+    .error-message {
+        color: red;
+    }
+</style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="medilife-load"></div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area">
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <div class="h-100 d-md-flex justify-content-between align-items-center">
+                            <a href="https://www.codebook.in/"><p>Welcome To <span>rgtech.projects@gmail.com </span></p></a>
+                            <p>Opening Hours : Monday to Saturday - 10am to 7pm - Contact : <span>+91 8500221170</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header Area -->
+        <div class="main-header-area" id="stickyHeader">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 h-100">
+                        <div class="main-menu h-100">
+                            <nav class="navbar h-100 navbar-expand-lg">
+                                <!-- Logo Area  -->
+                                <a class="navbar-brand" href="{% url "index" %}"><img src="{% static 'userstatic/img/mainlogo.png' %}" alt="Logo" width="200px" height="200px"></a>
+
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medilifeMenu" aria-controls="medilifeMenu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+                                <div class="collapse navbar-collapse" id="medilifeMenu">
+                                    <!-- Menu Area -->
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="{% url "dashboard" %}">Dashboard </a>
+                                        </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url "myprofile" %}">My Profile</a>
+                                        </li>
+                                       
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="{% url "depression" %}">Depression Detection <span class="sr-only">(current)</span></a>
+                                        </li>
+                                       
+                                      
+                                    </ul>
+                                    <!-- Appointment Button -->
+                                    <a href="{% url "userlogout" %}" class="btn medilife-appoint-btn ml-30"><span>Logout</span></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    
+    <section class="breadcumb-area bg-img gradient-background-overlay" style="background-image: url({% static 'userstatic/img/bg-img/breadcumb1.jpg' %});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-content">
+                        <h3 class="breadcumb-title">Depression Detection</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetuer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    <div class="medilife-book-an-appoinment-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="appointment-form-content">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-12 col-lg-12">
+                                <div class="medilife-appointment-form pb-0">
+                                    <form action="{% url "depression" %}" method="POST" enctype="multipart/form-data" id="form">
+                                        {% csrf_token %}
+                                        <div class="row align-items-end">
+                                           
+                                            <div class="col-12 col-md-12">
+                                            <div class="row">
+                                                
+                                                <div class="form-group col-12">
+                                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="age" id="age" placeholder="Age Should Be Between 18 - 22" onblur="validateAge()" style="color:white;" required>
+                                                    <div id="ageError" class="error-message"></div>
+                                                    
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <h6 style="color: #fff;">RelationShip Status</h6>
+                                                    <select name="RelationShip" class="form-control" id="speciality" required>
+                                                        <option value="0">Single</option>
+                                                        <option value="1">Married</option>
+                                                 
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <h6 style="color: #fff;">Family Income</h6>
+
+                                                    <select name="Family" class="form-control" id="doctors" required>
+                                                        <option value="0">0-20000</option>
+                                                        <option value="1">20000-50000</option>
+                                                        <option value="2">50000-100000</option>
+                                                       
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <h6 style="color: #fff;">Current Role</h6>
+
+                                                    <select name="Current" class="form-control" id="speciality" required>
+                                                        <option value="0">Own a Business</option>
+                                                        <option value="1">Part Time</option>
+                                                        <option value="2">Full Time Student</option>
+                                                    
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <h6 style="color: #fff;">Education</h6>
+
+                                                    <select name="Education" class="form-control" id="speciality" required>
+                                                        <option value="0">Undergraduate</option>
+                                                     
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <h6 style="color: #fff;">Gender</h6>
+
+                                                    <select name="Gender" class="form-control" id="doctors" required>
+                                                        <option value="0">Female</option>
+                                                        <option value="1">Male</option>
+                                                       
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row radio-container">
+                                                
+
+                                                <div class="col-12 question">
+                                                    <p class="ptag"><b>q3(d) : </b>I couldn't seem to experience any positive feeling at all</p>
+                                                    <div class="radio-group">
+                                                        <input type="radio" id="q12_poor" name="q1_nutrition" value="0" required>
+                                                        <label for="q12_poor">Never</label>
+                                                
+                                                        <input type="radio" id="q12_average" name="q1_nutrition" value="1" required>
+                                                        <label for="q12_average">Rarely</label>
+                                                
+                                                        <input type="radio" id="q12_good" name="q1_nutrition" value="2" required>
+                                                        <label for="q12_good">Frequently</label>
+                                                
+                                                        <input type="radio" id="q12_excellent" name="q1_nutrition" value="3" required>
+                                                        <label for="q12_excellent">Daily</label>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="col-6 question">
+                                                    <p class="ptag"><b>q5(d) : </b>I found it difficult to work up the initiative to do things</p>
+                                                    <div class="radio-group">
+                                                        <input type="radio" id="q15_less_than_1" name="q2_screentime" value="0" required>
+                                                        <label for="q15_less_than_1">Never</label>
+                                                
+                                                        <input type="radio" id="q15_1_to_3" name="q2_screentime" value="1" required>
+                                                        <label for="q15_1_to_3">Rarely</label>
+                                                
+                                                        <input type="radio" id="q15_3_to_6" name="q2_screentime" value="2" required>
+                                                        <label for="q15_3_to_6">Frequently</label>
+                                                
+                                                        <input type="radio" id="q15_more_than_6" name="q2_screentime" value="3" required>
+                                                        <label for="q15_more_than_6">Daily</label>
+                                                    </div>
+                                                </div>
+                                                
+
+                                                <div class="col-6 question">
+                                                    <p class="ptag"><b>q10(d) : </b>I felt that I had nothing to look forward to</p>
+                                                    <div class="radio-group">
+                                                        <input type="radio" id="q18_poor" name="q3_screentime" value="0" required>
+                                                        <label for="q18_poor">Never</label>
+                                                
+                                                        <input type="radio" id="q18_average" name="q3_screentime" value="1" required>
+                                                        <label for="q18_average">Rarely</label>
+                                                
+                                                        <input type="radio" id="q18_good" name="q3_screentime" value="2" required>
+                                                        <label for="q18_good">Frequently</label>
+                                                
+                                                        <input type="radio" id="q18_excellent" name="q3_screentime" value="3" required>
+                                                        <label for="q18_excellent">Daily</label>
+                                                    </div>
+                                                </div>
+                                                
+
+                                                
+                                                
+                                                
+                                                <div class="col-6 question">
+                                                    <p class="ptag"><b>q13(d) : </b>I felt down-hearted and blue
+                                                    </p>
+                                                    <div class="radio-group">
+                                                        <input type="radio" id="q6_never" name="q4_screentime"
+                                                        value="0" required>
+                                                        <label for="q6_never">Never</label>
+                                                        
+                                                        <input type="radio" id="q6_rarely" name="q4_screentime"
+                                                        value="1" required>
+                                                        <label for="q6_rarely">Rarely</label>
+                                                        
+                                                        
+                                                        
+                                                        <input type="radio" id="q6_frequently" name="q4_screentime"
+                                                        value="2" required>
+                                                        <label for="q6_frequently">Frequently</label>
+                                                        
+                                                        <input type="radio" id="q6_daily" name="q4_screentime"
+                                                        value="3" required>
+                                                        <label for="q6_daily">Daily</label>
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="col-6 question">
+                                                    <p class="ptag"><b>q16(d) : </b>I was unable to become enthusiastic about anything</p>
+                                                    <div class="radio-group">
+                                                        <input type="radio" id="q9_never" name="q5_screentime"
+                                                            value="0" required>
+                                                        <label for="q9_never">Never</label>
+
+                                                        <input type="radio" id="q9_rarely" name="q5_screentime"
+                                                            value="1" required>
+                                                        <label for="q9_rarely">Rarely</label>
+
+
+                                                        <input type="radio" id="q9_frequently" name="q5_screentime"
+                                                            value="2" required>
+                                                        <label for="q9_frequently">Frequently</label>
+
+                                                        <input type="radio" id="q9_daily" name="q5_screentime"
+                                                            value="3" required>
+                                                        <label for="q9_daily">Daily</label>
+                                                    </div>
+                                                </div>
+                                                
+                                               
+                                                
+                                                <div class="col-6 question">
+                                                    <p class="ptag"><b>q17(d) : </b>I felt I wasn't worth much as a person</p>
+                                                    <div class="radio-group">
+                                                        <input type="radio" id="q4_never" name="q6_screentime"
+                                                            value="0" required>
+                                                        <label for="q4_never">Never</label>
+
+                                                        <input type="radio" id="q4_rarely" name="q6_screentime"
+                                                            value="1" required>
+                                                        <label for="q4_rarely">Rarely</label>
+
+                                                       
+
+                                                        <input type="radio" id="q4_frequently" name="q6_screentime"
+                                                            value="2" required>
+                                                        <label for="q4_frequently">Frequently</label>
+
+                                                        <input type="radio" id="q4_daily" name="q6_screentime"
+                                                            value="3" required>
+                                                        <label for="q4_daily">Daily</label>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="col-6 question">
+                                                    <p class="ptag"><b>q21(d) : </b>I felt that life was meaningless</p>
+                                                    <div class="radio-group">
+                                                        <input type="radio" id="q8_never" name="q7_frequency"
+                                                        value="0" required>
+                                                        <label for="q8_never">Never</label>
+                                                        
+                                                        <input type="radio" id="q8_rarely" name="q7_frequency"
+                                                        value="1" required>
+                                                        <label for="q8_rarely">Rarely</label>
+                                                        
+                                                        
+                                                        <input type="radio" id="q8_frequently" name="q7_frequency"
+                                                        value="2" required>
+                                                        <label for="q8_frequently">Frequently</label>
+                                                        
+                                                        <input type="radio" id="q8_daily" name="q7_frequency"
+                                                        value="3" required>
+                                                        <label for="q8_daily">Daily</label>
+                                                    </div>
+                                                </div>
+
+                                               
+
+
+                                            </div>
+                                        </div><hr style="background-color: #fff;">
+
+
+
+                                        <div class="col-12" style="text-align: center;">
+                                            <div class="form-group" >
+                                                <button type="submit" class="btn medilife-btn">DETECT DEPRESSION
+                                                    <span>+</span></button>
+                                            </div>
+                                        </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    <!-- ***** Footer Area Start ***** -->
+    <footer class="footer-area section-padding-100">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="footer-logo">
+                                <img src="{% static 'userstatic/img/mainlogo.png' %}" width="200px" height="200px" alt="">
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer.</p>
+                            <div class="footer-social-info">
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="widget-title">
+                                <h6>Latest News</h6>
+                            </div>
+                            <div class="widget-blog-post">
+                                <!-- Single Blog Post -->
+                                <div class="widget-single-blog-post d-flex">
+                                    <div class="widget-post-thumbnail">
+                                        <img src="{% static 'userstatic/img/blog-img/ln1.jpg' %}" alt="">
+                                    </div>
+                                    <div class="widget-post-content">
+                                        <a href="#">Better Health Care</a>
+                                        <p>Dec 02, 2017</p>
+                                    </div>
+                                </div>
+                                <!-- Single Blog Post -->
+                                <div class="widget-single-blog-post d-flex">
+                                    <div class="widget-post-thumbnail">
+                                        <img src="{% static 'userstatic/img/blog-img/ln2.jpg' %}" alt="">
+                                    </div>
+                                    <div class="widget-post-content">
+                                        <a href="#">A new drug is tested</a>
+                                        <p>Dec 02, 2017</p>
+                                    </div>
+                                </div>
+                                <!-- Single Blog Post -->
+                                <div class="widget-single-blog-post d-flex">
+                                    <div class="widget-post-thumbnail">
+                                        <img src="{% static 'userstatic/img/blog-img/ln3.jpg' %}" alt="">
+                                    </div>
+                                    <div class="widget-post-content">
+                                        <a href="#">Health department advice</a>
+                                        <p>Dec 02, 2017</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="widget-title">
+                                <h6>Contact Details</h6>
+                            </div>
+                            <div class="footer-contact-form">
+                            <div class="widget-post-content">
+                                <a href="#">Gandhi Colony, Rajahmundry.</a>
+                                <p>#2nd Floor, Siris Rd, Rajahmundry A1662.</p>
+                            </div>
+                            <div class="widget-post-content">
+                                <a href="#">+91 855 588 7986</a>
+                                <p>Mon to Fri 9am to 6pm</p>
+                            </div>
+                            <div class="widget-post-content">
+                                <a href="#">rgtech.projects@gmail.com</a>
+                                <p>Send us your query anytime!</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="widget-title">
+                                <h6>News Letter</h6>
+                            </div>
+
+                            <div class="footer-newsletter-area">
+                                <form action="#">
+                                    <input type="email" class="form-control border-0 mb-0" name="newsletterEmail" id="newsletterEmail" placeholder="Your Email Here">
+                                    <button type="submit">Subscribe</button>
+                                </form>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Footer Area -->
+        <div class="bottom-footer-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bottom-footer-content">
+                            <!-- Copywrite Text -->
+                            <div class="copywrite-text">
+                                <p style='color:white;'><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with<span style='color:blue;'> <i class="fa fa-heart-o" aria-hidden="true"></i></span> by <a href="https://www.codebook.in/" target="_blank"><span style='color:blue;'>rgtech.projects@gmail.com</span></a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+<p style='color:white;'>Re-distributed by <a href="https://www.codebook.in/" target="_blank"><span style='color:blue;'>rgtech developers</span></a>
+</p>                      </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer> 
+    <!-- ***** Footer Area End ***** -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'userstatic/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'userstatic/js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'userstatic/js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'userstatic/js/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'userstatic/js/active.js' %}"></script>
+    <script>
+        function validateAge() {
+            var ageInput = document.getElementById('age');
+            var ageError = document.getElementById('ageError');
+            var age = parseInt(ageInput.value);
+
+            // Check if age is within the valid range (18-22)
+            if (isNaN(age) || age < 18 || age > 22) {
+                ageError.textContent = 'Please enter an age between 18 to 22.';
+                ageInput.classList.add('border-danger'); // You may want to add a CSS class for highlighting the input as well
+            } else {
+                ageError.textContent = '';
+                ageInput.classList.remove('border-danger');
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+        title: "Success!",
+        text: "{{message}}",
+        icon: "success",
+        button: "OK",
+    });
+</script>
+
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+<script>swal({
+    title: "Warning :)",
+    text: "{{message}}",
+    icon: "warning",
+    button: "OK",
+    
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<script>swal({
+    title: "info :)",
+    text: "{{message}}",
+    icon: "info",
+    button: "OK",
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>swal({
+    title: "error :)",
+    text: "{{message}}",
+    icon: "error",
+    button: "OK",
+});
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+</body>
+
+</html>

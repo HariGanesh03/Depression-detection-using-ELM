@@ -1,0 +1,349 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>Depression Detection</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="{% static 'userstatic/img/core-img/favicon.ico' %}">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'userstatic/style.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="medilife-load"></div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area">
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <div class="h-100 d-md-flex justify-content-between align-items-center">
+                            <a href="https://www.codebook.in/"><p>Welcome To <span>rgtech.projects@gmail.com </span></p></a>
+                            <p>Opening Hours : Monday to Saturday - 10am to 7pm - Contact : <span>+91 8500221170</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header Area -->
+        <div class="main-header-area" id="stickyHeader">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 h-100">
+                        <div class="main-menu h-100">
+                            <nav class="navbar h-100 navbar-expand-lg">
+                                <!-- Logo Area  -->
+                                <a class="navbar-brand" href="{% url "index" %}"><img src="{% static 'userstatic/img/mainlogo.png' %}" alt="Logo" width="200px" height="200px"></a>
+
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medilifeMenu" aria-controls="medilifeMenu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+                                <div class="collapse navbar-collapse" id="medilifeMenu">
+                                    <!-- Menu Area -->
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="{% url "dashboard" %}">Dashboard </a>
+                                        </li>
+                                        
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="{% url "myprofile" %}">My Profile <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url "depression" %}">Depression Detection</a>
+                                        </li>
+                                       
+                                      
+                                    </ul>
+                                    <!-- Appointment Button -->
+                                    <a href="{% url "userlogout" %}" class="btn medilife-appoint-btn ml-30"><span>Logout</span></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    
+    <section class="breadcumb-area bg-img gradient-background-overlay" style="background-image: url({% static 'userstatic/img/bg-img/breadcumb1.jpg' %});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-content">
+                        <h3 class="breadcumb-title">My Profile</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetuer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <div class="medilife-book-an-appoinment-area">
+        <div class="container">
+            <div class="row">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                <div class="col-12">
+                    <div class="appointment-form-content">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-12 col-lg-9">
+                                <div class="medilife-appointment-form">
+                                    
+                                        <div class="row align-items-end">
+                                            <div class="col-12 text-center" style="text-align: center;">
+                                                <h2 style="color: aliceblue; ">My Profile</h2><hr style="color: aliceblue;">   
+                                            </div>                                         
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="email_address" id="time" placeholder="Time" value="{{i.user_email}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="user_name" id="date" placeholder="Date" value="{{i.user_username}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="email_password" id="date" placeholder="Date" value="{{i.user_password}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="contact_number" id="time" placeholder="Time"  value="{{i.user_contact}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="date" id="date" placeholder="Date" value="{{i.user_dates}}">
+                                                </div>
+                                            </div>
+                                           
+                                           
+                                            <div class="col-12 col-md-5 mb-0">
+                                                <div class="form-group mb-0">
+                                                    <button type="submit" class="btn medilife-btn">Edit Profile <span>+</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <div class="medilife-contact-info">
+                                    <!-- Single Contact Info -->
+                                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                                        
+                                        <img class="mt-5" style="border-radius: 10px;" src="/media/{{i.user_file}}" height="180px" width="180px">
+                                        <!-- Choose File button -->
+                                        <label for="fileInput" class="btn btn-danger mt-3">Select Image</label>
+                                        <input id="fileInput" type="file" name="user_file" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ***** Footer Area Start ***** -->
+    <footer class="footer-area section-padding-100">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="footer-logo">
+                                <img src="{% static 'userstatic/img/mainlogo.png' %}" width="200px" height="200px" alt="">
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer.</p>
+                            <div class="footer-social-info">
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="widget-title">
+                                <h6>Latest News</h6>
+                            </div>
+                            <div class="widget-blog-post">
+                                <!-- Single Blog Post -->
+                                <div class="widget-single-blog-post d-flex">
+                                    <div class="widget-post-thumbnail">
+                                        <img src="{% static 'userstatic/img/blog-img/ln1.jpg' %}" alt="">
+                                    </div>
+                                    <div class="widget-post-content">
+                                        <a href="#">Better Health Care</a>
+                                        <p>Dec 02, 2017</p>
+                                    </div>
+                                </div>
+                                <!-- Single Blog Post -->
+                                <div class="widget-single-blog-post d-flex">
+                                    <div class="widget-post-thumbnail">
+                                        <img src="{% static 'userstatic/img/blog-img/ln2.jpg' %}" alt="">
+                                    </div>
+                                    <div class="widget-post-content">
+                                        <a href="#">A new drug is tested</a>
+                                        <p>Dec 02, 2017</p>
+                                    </div>
+                                </div>
+                                <!-- Single Blog Post -->
+                                <div class="widget-single-blog-post d-flex">
+                                    <div class="widget-post-thumbnail">
+                                        <img src="{% static 'userstatic/img/blog-img/ln3.jpg' %}" alt="">
+                                    </div>
+                                    <div class="widget-post-content">
+                                        <a href="#">Health department advice</a>
+                                        <p>Dec 02, 2017</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="widget-title">
+                                <h6>Contact Details</h6>
+                            </div>
+                            <div class="footer-contact-form">
+                            <div class="widget-post-content">
+                                <a href="#">Gandhi Colony, Rajahmundry.</a>
+                                <p>#2nd Floor, Siris Rd, Rajahmundry A1662.</p>
+                            </div>
+                            <div class="widget-post-content">
+                                <a href="#">+91 855 588 7986</a>
+                                <p>Mon to Fri 9am to 6pm</p>
+                            </div>
+                            <div class="widget-post-content">
+                                <a href="#">rgtech.projects@gmail.com</a>
+                                <p>Send us your query anytime!</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="widget-title">
+                                <h6>News Letter</h6>
+                            </div>
+
+                            <div class="footer-newsletter-area">
+                                <form action="#">
+                                    <input type="email" class="form-control border-0 mb-0" name="newsletterEmail" id="newsletterEmail" placeholder="Your Email Here">
+                                    <button type="submit">Subscribe</button>
+                                </form>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Footer Area -->
+        <div class="bottom-footer-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bottom-footer-content">
+                            <!-- Copywrite Text -->
+                            <div class="copywrite-text">
+                                <p style='color:white;'><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with<span style='color:blue;'> <i class="fa fa-heart-o" aria-hidden="true"></i></span> by <a href="https://www.codebook.in/" target="_blank"><span style='color:blue;'>rgtech.projects@gmail.com</span></a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+<p style='color:white;'>Re-distributed by <a href="https://www.codebook.in/" target="_blank"><span style='color:blue;'>rgtech developers</span></a>
+</p>                      </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer> 
+    <!-- ***** Footer Area End ***** -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'userstatic/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'userstatic/js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'userstatic/js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'userstatic/js/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'userstatic/js/active.js' %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+        title: "Success!",
+        text: "{{message}}",
+        icon: "success",
+        button: "OK",
+    });
+</script>
+
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+<script>swal({
+    title: "Warning :)",
+    text: "{{message}}",
+    icon: "warning",
+    button: "OK",
+    
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<script>swal({
+    title: "info :)",
+    text: "{{message}}",
+    icon: "info",
+    button: "OK",
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>swal({
+    title: "error :)",
+    text: "{{message}}",
+    icon: "error",
+    button: "OK",
+});
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+</body>
+
+</html>

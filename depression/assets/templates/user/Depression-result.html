@@ -1,0 +1,426 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>Anxiety Stress Depression Detection</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="{% static 'userstatic/img/core-img/favicon.ico' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'userstatic/style.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="medilife-load"></div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area">
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <div class="h-100 d-md-flex justify-content-between align-items-center">
+                            <a href="https://www.codebook.in/"><p>Welcome To <span>Codebook.in </span> Anxiety Stress Depression Template</p></a>
+                            <p>Opening Hours : Monday to Saturday - 10am to 7pm - Contact : <span>+91 855 588 7986</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header Area -->
+        <div class="main-header-area" id="stickyHeader">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 h-100">
+                        <div class="main-menu h-100">
+                            <nav class="navbar h-100 navbar-expand-lg">
+                                <!-- Logo Area  -->
+                                <a class="navbar-brand" href="{% url "index" %}"><img src="{% static 'userstatic/img/mainlogo.png' %}" alt="Logo" width="200px" height="200px"></a>
+
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medilifeMenu" aria-controls="medilifeMenu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+                                <div class="collapse navbar-collapse" id="medilifeMenu">
+                                    <!-- Menu Area -->
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="{% url "dashboard" %}">Dashboard </a>
+                                        </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url "myprofile" %}">My Profile</a>
+                                        </li>
+                                     
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url "depression" %}">Depression Detection</a>
+                                        </li>
+                                       
+                                      
+                                    </ul>
+                                    <!-- Appointment Button -->
+                                    <a href="{% url "userlogout" %}" class="btn medilife-appoint-btn ml-30"><span>Logout</span></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    
+    <section class="breadcumb-area bg-img gradient-background-overlay" style="background-image: url({% static 'userstatic/img/bg-img/breadcumb1.jpg' %});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-content">
+                        <h3 class="breadcumb-title">Depression Result</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetuer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+        .col-md-12.text-center h3 {
+            font-family: 'Arial', sans-serif;
+            font-size: 36px;
+            color: #007bff; /* Bootstrap primary color */
+            margin-bottom: 20px;
+            font-weight: bold; /* Make the heading bold */
+            text-transform: uppercase; /* Convert text to uppercase */
+            background-color: #f8f9fa; /* Add a light background */
+            padding: 10px; /* Add some padding */
+            border-radius: 10px; /* Add rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                {% if res >= 0 and res <= 8 %}
+                <h3 class="text-Success">Depression Detection - Normal</h3>
+                {% elif res >= 10 and res <= 12 %}
+                <h3 class="text-primary">Depression Detection - Mild</h3>
+                {% elif res >= 14 and res <= 20 %}
+                <h3 class="text-Warning">Depression Detection - Moderate</h3>
+                {% elif res >= 22 and res <= 26 %}
+                <h3 class="text-danger">Depression Detection - Severe</h3>
+                {% else %}
+                <h3 class="text-danger">Depression Detection - Extremely Severe</h3>
+                {% endif %} 
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="ml-auto text-center" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 30px; margin-top:10px;"> KNN Algorithm</p><hr>
+
+    <div class="d-flex ">
+        <div class="col-7">
+            <p class="ml-auto text-center" style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 40px;">Predict Graph</p>
+            <canvas id="myChart" style="width:100%;max-width:600px;" class="m-auto mb-5"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                var xValues = ["ACCURACY", "AUC"];
+                var yValues = [93, 0.9 ];
+        
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            label: 'Percentage',
+                            data: yValues,
+                            backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
+        
+
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <p class="ml-auto text-center" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 40px; ">DASS-21 Scoring</p>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-lg">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="ml-5">Depression</th>
+                                <th class="ml-5">Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Normal:</th>
+                                <td>0 - 8</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Mild:</th>
+                                <td>10 - 12</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Moderate:</th>
+                                <td>14 - 20</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Severe:</th>
+                                <td>22 - 26</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Extremely Severe:</th>
+                                <td>28+</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                
+                    
+            </div>
+            
+        
+    </div><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <!-- ***** Footer Area Start ***** -->
+     <footer class="footer-area section-padding-100">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="footer-logo">
+                                <img src="{% static 'userstatic/img/mainlogo.png' %}" width="200px" height="200px" alt="">
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer.</p>
+                            <div class="footer-social-info">
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="widget-title">
+                                <h6>Latest News</h6>
+                            </div>
+                            <div class="widget-blog-post">
+                                <!-- Single Blog Post -->
+                                <div class="widget-single-blog-post d-flex">
+                                    <div class="widget-post-thumbnail">
+                                        <img src="{% static 'userstatic/img/blog-img/ln1.jpg' %}" alt="">
+                                    </div>
+                                    <div class="widget-post-content">
+                                        <a href="#">Better Health Care</a>
+                                        <p>Dec 02, 2017</p>
+                                    </div>
+                                </div>
+                                <!-- Single Blog Post -->
+                                <div class="widget-single-blog-post d-flex">
+                                    <div class="widget-post-thumbnail">
+                                        <img src="{% static 'userstatic/img/blog-img/ln2.jpg' %}" alt="">
+                                    </div>
+                                    <div class="widget-post-content">
+                                        <a href="#">A new drug is tested</a>
+                                        <p>Dec 02, 2017</p>
+                                    </div>
+                                </div>
+                                <!-- Single Blog Post -->
+                                <div class="widget-single-blog-post d-flex">
+                                    <div class="widget-post-thumbnail">
+                                        <img src="{% static 'userstatic/img/blog-img/ln3.jpg' %}" alt="">
+                                    </div>
+                                    <div class="widget-post-content">
+                                        <a href="#">Health department advice</a>
+                                        <p>Dec 02, 2017</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="widget-title">
+                                <h6>Contact Details</h6>
+                            </div>
+                            <div class="footer-contact-form">
+                            <div class="widget-post-content">
+                                <a href="#">Snehapuri Colony, Hyderabad.</a>
+                                <p>#2nd Floor, Siris Rd, Near L.B Nagar Metro Station Pillar No, A1662.</p>
+                            </div>
+                            <div class="widget-post-content">
+                                <a href="#">+91 855 588 7986</a>
+                                <p>Mon to Fri 9am to 6pm</p>
+                            </div>
+                            <div class="widget-post-content">
+                                <a href="#">projects@codebook.in</a>
+                                <p>Send us your query anytime!</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget-area">
+                            <div class="widget-title">
+                                <h6>News Letter</h6>
+                            </div>
+
+                            <div class="footer-newsletter-area">
+                                <form action="#">
+                                    <input type="email" class="form-control border-0 mb-0" name="newsletterEmail" id="newsletterEmail" placeholder="Your Email Here">
+                                    <button type="submit">Subscribe</button>
+                                </form>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Footer Area -->
+        <div class="bottom-footer-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bottom-footer-content">
+                            <!-- Copywrite Text -->
+                            <div class="copywrite-text">
+                                <p style='color:white;'><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with<span style='color:blue;'> <i class="fa fa-heart-o" aria-hidden="true"></i></span> by <a href="https://www.codebook.in/" target="_blank"><span style='color:blue;'>Codebook.in</span></a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+<p style='color:white;'>Re-distributed by <a href="https://www.codebook.in/" target="_blank"><span style='color:blue;'>Codebook Developer</span></a>
+</p>                      </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ***** Footer Area End ***** -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'userstatic/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'userstatic/js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'userstatic/js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'userstatic/js/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'userstatic/js/active.js' %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+        title: "Success!",
+        text: "{{message}}",
+        icon: "success",
+        button: "OK",
+    });
+</script>
+
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+<script>swal({
+    title: "Warning :)",
+    text: "{{message}}",
+    icon: "warning",
+    button: "OK",
+    
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<script>swal({
+    title: "info :)",
+    text: "{{message}}",
+    icon: "info",
+    button: "OK",
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>swal({
+    title: "error :)",
+    text: "{{message}}",
+    icon: "error",
+    button: "OK",
+});
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+</body>
+
+</html>

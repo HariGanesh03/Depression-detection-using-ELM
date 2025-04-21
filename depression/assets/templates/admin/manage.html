@@ -1,0 +1,437 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Medical Admin Page</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'adminstatic/images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'adminstatic/vendor/owl-carousel/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminstatic/vendor/owl-carousel/css/owl.theme.default.min.css' %}">
+    <link href="{% static 'adminstatic/vendor/jqvmap/css/jqvmap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'adminstatic/css/style.css' %}" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <style>
+        /* Custom Styles */
+        .custom-heading {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff; /* Bootstrap primary color */
+        }
+
+        .btn-accept {
+            background-color: #28a745; /* Bootstrap success color */
+            border-color: #28a745;
+        }
+
+        .btn-delete {
+            background-color: #dc3545; /* Bootstrap danger color */
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+            title: "Success!",
+            text: "{{message}}",
+            icon: "success",
+            button: "OK",
+        });
+    </script>
+    
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <script>swal({
+            title: "Warning :)",
+            text: "{{message}}",
+            icon: "warning",
+            button: "OK",
+         
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <script>swal({
+            title: "info :)",
+            text: "{{message}}",
+            icon: "info",
+            button: "OK",
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <script>swal({
+            title: "error :)",
+            text: "{{message}}",
+            icon: "error",
+            button: "OK",
+        });
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <a href="admin_dashboard" class="brand-logo">
+                <style>
+                    h3 {
+                        font-weight: bold;
+                        color: white;
+                    }
+                    .fa-user {
+                        font-family: FontAwesome;
+                    }
+                </style>
+                <h3><i class="fa fa-user"></i> Admin</h3>
+            </a>
+
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">
+            <div class="header-content">
+                <nav class="navbar navbar-expand">
+                    <div class="collapse navbar-collapse justify-content-between">
+                        <div class="header-left">
+                            <div class="search_bar dropdown">
+                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
+                                    <i class="mdi mdi-magnify"></i>
+                                </span>
+                                <div class="dropdown-menu p-0 m-0">
+                                    <form>
+                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="navbar-nav header-right">
+                            <li class="nav-item dropdown notification_dropdown">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                    <i class="mdi mdi-bell"></i>
+                                    <div class="pulse-css"></div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <ul class="list-unstyled">
+                                        <li class="media dropdown-item">
+                                            <span class="success"><i class="ti-user"></i></span>
+                                            <div class="media-body">
+                                                <a href="#">
+                                                    <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
+                                                    </p>
+                                                </a>
+                                            </div>
+                                            <span class="notify-time">3:20 am</span>
+                                        </li>
+                                        <li class="media dropdown-item">
+                                            <span class="primary"><i class="ti-shopping-cart"></i></span>
+                                            <div class="media-body">
+                                                <a href="#">
+                                                    <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
+                                                </a>
+                                            </div>
+                                            <span class="notify-time">3:20 am</span>
+                                        </li>
+                                        <li class="media dropdown-item">
+                                            <span class="danger"><i class="ti-bookmark"></i></span>
+                                            <div class="media-body">
+                                                <a href="#">
+                                                    <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
+                                                    </p>
+                                                </a>
+                                            </div>
+                                            <span class="notify-time">3:20 am</span>
+                                        </li>
+                                        <li class="media dropdown-item">
+                                            <span class="primary"><i class="ti-heart"></i></span>
+                                            <div class="media-body">
+                                                <a href="#">
+                                                    <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
+                                                </a>
+                                            </div>
+                                            <span class="notify-time">3:20 am</span>
+                                        </li>
+                                        <li class="media dropdown-item">
+                                            <span class="success"><i class="ti-image"></i></span>
+                                            <div class="media-body">
+                                                <a href="#">
+                                                    <p><strong> James.</strong> has added a<strong>customer</strong> Successfully
+                                                    </p>
+                                                </a>
+                                            </div>
+                                            <span class="notify-time">3:20 am</span>
+                                        </li>
+                                    </ul>
+                                    <a class="all-notification" href="#">See all notifications <i
+                                            class="ti-arrow-right"></i></a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown header-profile">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                    <i class="mdi mdi-account"></i>
+                                </a>
+                                
+                                    </a>
+                                    <a href="{% url "index" %}" class="dropdown-item">
+                                        <i class="icon-key"></i>
+                                        <span class="ml-2">Logout</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="quixnav">
+            <div class="quixnav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Main Menu</li>
+                    <li><a href="{% url "admin_dashboard" %}">Dashboard</a></li>
+
+                    <li class="nav-label">Apps</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">User Management</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url "pending" %}">Pending User</a></li>
+                            <li><a href="{% url "manage" %}">Manage User</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-chart-bar-33"></i><span class="nav-text">DataSet</span></a>
+                <ul aria-expanded="false">
+                   <li><a href="{% url "depression_upload" %}">Depression Upload DataSet</a></li>
+                    <li><a href="{% url "view" %}">View DataSet</a></li>
+
+                </ul>
+            </li>
+            <li class="nav-label">Depression Algorithms</li>
+                                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                        class="icon icon-world-2"></i><span class="nav-text">Algorithms & Graph</span></a>
+                                        <ul aria-expanded="false">
+                                            <li><a href="{% url 'logistic_regression_depression' %}">Logistic Regression</a></li>
+                                            <li><a href="{% url 'knn_depression' %}">knn Algorithm</a></li>
+                                            <li><a href="{% url 'compare' %}">Camparsion Graph</a></li>
+        
+                 
+                        </ul>
+            </li>
+
+            
+        </ul>
+    </div>
+
+
+</div>
+<!--**********************************
+    Sidebar end
+***********************************-->
+
+  <style>
+    .custom-heading {
+        font-size: 36px;
+        font-weight: bold;
+        background-color: #f8f9fa;
+        border: 2px solid #343a40;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        color: #343a40;
+    }
+</style>
+<br><br><br><br><br><br>
+<div class="container mt-6" >
+    <div class="row justify-content-center" >
+        <div class="col-md-5" >
+            <div class="custom-heading">
+                Manage User
+            </div>
+        </div>
+    </div>
+</div><br>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12"  style="padding-left: 170px;">
+                <div class="card">
+                    <div class="table-responsive pt-3">
+                        <table class="table table-striped project-orders-table">
+                            <!-- Table Headers -->
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="ml-5">ID</th>
+                                    <th>USERNAME</th>
+                                    <th>EMAIL ID</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in all %}
+                                <tr>
+                                  <th style="color: black;" scope="row">{{forloop.counter}}</th>
+                                  <td style="color: black;">{{i.user_username}}</td>
+                                  <td style="color: black;">{{i.user_email}}</td>
+                                  <td style="color: black;"> {{i.user_dates}}</td>
+
+                                  <td class="">
+                                    {% if i.user_status == 'Accepted' %}
+                                      <label class="badge badge-success">Accepted</label>
+                                    {% else %}
+                                      <label class="badge badge-danger">Rejected</label>
+                                    {% endif %}
+                                  </td>
+                            
+                                  <td>
+                                    
+                                  </td>
+                                </tr>
+                              {% endfor %}
+                              <script> 
+                                function myFunction() {
+                                    if (confirm(" Proceed to delete the Student..! ") == true) {
+                                    } 
+                                    else {
+                                        return false;
+                                    }
+                                }
+                            </script>
+                            </tbody>
+                            </table>
+                            {% comment %} Pagination start {% endcomment %}
+                            <nav aria-label="Page navigation example ">
+                            <ul class="pagination ml-2">
+                            {% if all.has_previous %}
+                            <!-- <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li> -->
+                            <li class="page-item"><a class="page-link bg-info text-white" href="?page={{ all.previous_page_number }}">Previous</a></li>
+                            {% endif %}
+                            {% if all.has_next %}
+                            <li class="page-item"><a class="page-link bg-info text-white" href="?page={{ all.next_page_number }}">Next</a></li>
+                            <!-- <li class="page-item"><a class="page-link" href="?page={{ r.paginator.num_pages }}">Last &raquo;</a></li> -->
+                            {% endif %}
+                            </ul>
+                            Page {{ all.number }} of {{ all.paginator.num_pages }}.
+                            </nav>  </div>
+ <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer" style="margin-top: 80px;">
+            <div class="copyright">
+                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Codebook</a> 2023</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="{% static 'adminstatic/vendor/global/global.min.js' %}"></script>
+    <script src="{% static 'adminstatic/js/quixnav-init.js' %}"></script>
+    <script src="{% static 'adminstatic/js/custom.min.js' %}"></script>
+
+
+    <!-- Vectormap -->
+    <script src="{% static 'adminstatic/vendor/raphael/raphael.min.js' %}"></script>
+    <script src="{% static 'adminstatic/vendor/morris/morris.min.js' %}"></script>
+
+
+    <script src="{% static 'adminstatic/vendor/circle-progress/circle-progress.min.js' %}"></script>
+    <script src="{% static 'adminstatic/vendor/chart.js/Chart.bundle.min.js' %}"></script>
+
+    <script src="{% static 'adminstatic/vendor/gaugeJS/dist/gauge.min.js' %}"></script>
+
+    <!--  flot-chart js -->
+    <script src="{% static 'adminstatic/vendor/flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'adminstatic/vendor/flot/jquery.flot.resize.js' %}"></script>
+
+    <!-- Owl Carousel -->
+    <script src="{% static 'adminstatic/vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+
+    <!-- Counter Up -->
+    <script src="{% static 'adminstatic/vendor/jqvmap/js/jquery.vmap.min.js' %}"></script>
+    <script src="{% static 'adminstatic/vendor/jqvmap/js/jquery.vmap.usa.js' %}"></script>
+    <script src="{% static 'adminstatic/vendor/jquery.counterup/jquery.counterup.min.js' %}"></script>
+
+
+    <script src="{% static 'adminstatic/js/dashboard/dashboard-1.js' %}"></script>
+    <script>
+        // JavaScript functions to handle accept and reject actions
+        function acceptStudent(userId) {
+          // Implement logic to handle accept action here
+          console.log(`Accepted User with ID: ${userId}`);
+        }
+
+        function rejectStudent(userId) {
+          // Implement logic to handle reject action here
+          console.log(`Rejected User with ID: ${userId}`);
+        }
+      </script>
+
+
+</body>
+
+</html>

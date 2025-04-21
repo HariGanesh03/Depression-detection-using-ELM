@@ -1,0 +1,498 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Medical Admin Page</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'adminstatic/images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'adminstatic/vendor/owl-carousel/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminstatic/vendor/owl-carousel/css/owl.theme.default.min.css' %}">
+    <link href="{% static 'adminstatic/vendor/jqvmap/css/jqvmap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'adminstatic/css/style.css' %}" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+            title: "Success!",
+            text: "{{message}}",
+            icon: "success",
+            button: "OK",
+        });
+    </script>
+    
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <script>swal({
+            title: "Warning :)",
+            text: "{{message}}",
+            icon: "warning",
+            button: "OK",
+         
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <script>swal({
+            title: "info :)",
+            text: "{{message}}",
+            icon: "info",
+            button: "OK",
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <script>swal({
+            title: "error :)",
+            text: "{{message}}",
+            icon: "error",
+            button: "OK",
+        });
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <a href="admin_dashboard" class="brand-logo">
+                <style>
+                    h3 {
+                        font-weight: bold;
+                        color: white;
+                    }
+                    .fa-user {
+                        font-family: FontAwesome;
+                    }
+                </style>
+                <h3><i class="fa fa-user"></i> Admin</h3>
+            </a>
+
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">
+            <div class="header-content">
+                <nav class="navbar navbar-expand">
+                    <div class="collapse navbar-collapse justify-content-between">
+                        <div class="header-left">
+                            <div class="search_bar dropdown">
+                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
+                                    <i class="mdi mdi-magnify"></i>
+                                </span>
+                                <div class="dropdown-menu p-0 m-0">
+                                    <form>
+                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="navbar-nav header-right">
+                            <li class="nav-item dropdown notification_dropdown">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                    <i class="mdi mdi-bell"></i>
+                                    <div class="pulse-css"></div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <ul class="list-unstyled">
+                                        <li class="media dropdown-item">
+                                            <span class="success"><i class="ti-user"></i></span>
+                                            <div class="media-body">
+                                                <a href="#">
+                                                    <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
+                                                    </p>
+                                                </a>
+                                            </div>
+                                            <span class="notify-time">3:20 am</span>
+                                        </li>
+                                        <li class="media dropdown-item">
+                                            <span class="primary"><i class="ti-shopping-cart"></i></span>
+                                            <div class="media-body">
+                                                <a href="#">
+                                                    <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
+                                                </a>
+                                            </div>
+                                            <span class="notify-time">3:20 am</span>
+                                        </li>
+                                        <li class="media dropdown-item">
+                                            <span class="danger"><i class="ti-bookmark"></i></span>
+                                            <div class="media-body">
+                                                <a href="#">
+                                                    <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
+                                                    </p>
+                                                </a>
+                                            </div>
+                                            <span class="notify-time">3:20 am</span>
+                                        </li>
+                                        <li class="media dropdown-item">
+                                            <span class="primary"><i class="ti-heart"></i></span>
+                                            <div class="media-body">
+                                                <a href="#">
+                                                    <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
+                                                </a>
+                                            </div>
+                                            <span class="notify-time">3:20 am</span>
+                                        </li>
+                                        <li class="media dropdown-item">
+                                            <span class="success"><i class="ti-image"></i></span>
+                                            <div class="media-body">
+                                                <a href="#">
+                                                    <p><strong> James.</strong> has added a<strong>customer</strong> Successfully
+                                                    </p>
+                                                </a>
+                                            </div>
+                                            <span class="notify-time">3:20 am</span>
+                                        </li>
+                                    </ul>
+                                    <a class="all-notification" href="#">See all notifications <i
+                                            class="ti-arrow-right"></i></a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown header-profile">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                    <i class="mdi mdi-account"></i>
+                                </a>
+                                
+                                    </a>
+                                    <a href="{% url "index" %}" class="dropdown-item">
+                                        <i class="icon-key"></i>
+                                        <span class="ml-2">Logout</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="quixnav">
+            <div class="quixnav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Main Menu</li>
+                    <li><a href="{% url "admin_dashboard" %}">Dashboard</a></li>
+
+                    <li class="nav-label">Apps</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">User Management</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url "pending" %}">Pending User</a></li>
+                            <li><a href="{% url "manage" %}">Manage User</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-chart-bar-33"></i><span class="nav-text">DataSet</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url "upload" %}">Anxiety Upload DataSet</a></li>
+                    <li><a href="{% url "stress_upload" %}">Stress Upload DataSet</a></li>
+                    <li><a href="{% url "depression_upload" %}">Depression Upload DataSet</a></li>
+                    <li><a href="{% url "view" %}">View DataSet</a></li>
+
+                </ul>
+            </li>
+            <li class="nav-label">Depression Algorithms</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-world-2"></i><span class="nav-text">Algorithms & Graph</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url "decission-algo" %}">Decission tree Algorithm</a></li>
+
+                            <li><a href="{% url "RandomForest-algo" %}">Linear Regression Algorithm</a></li>  
+                            <li><a href="{% url "comparison-graph-d" %}">Comparison Graph</a></li>
+                
+                 
+                        </ul>
+            </li>
+
+            <li class="nav-label">Anxiety Algorithms</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-world-2"></i><span class="nav-text">Algorithms & Graph</span></a>
+                        <ul aria-expanded="false">
+
+                            <li><a href="{% url "svm-algo" %}">Random Forest Algorithm</a></li>
+                            <li><a href="{% url "logistic-algo" %}">Linear Regression Algorithm</a></li>
+                            <li><a href="{% url "comparison-graph-a" %}">Comparison Graph</a></li>
+
+          
+                        </ul>
+            </li>
+
+            <li class="nav-label">Stress Algorithms</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-world-2"></i><span class="nav-text">Algorithms & Graph</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url "ada-algo" %}">XGBoost Algorithm</a></li>
+                            <li><a href="{% url "Gradient" %}">Linear Regression Algorithm</a></li>
+                            <li><a href="{% url "comparison-graph-s" %}">Comparison Graph</a></li>
+                        </ul>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+<!--**********************************
+    Sidebar end
+***********************************-->
+
+
+        <div class="pcoded-content">
+            <!-- Page-header start -->
+            <div class="page-header mb-5">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title d-flex justify-content-between">
+                                <h5 class="m-b-10">Comparission Graph </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            <!-- Page-header end -->
+          <div class="panel-header panel-header-sm">
+          </div><br><br>
+                      <div class="row col-6 mx-auto text-center">
+                          <div class="col-10  text-center">
+                              <script>
+                                  window.onload = function () {
+                                      var chart = new CanvasJS.Chart("chartContainer", {
+                                          backgroundColor: "transparent",
+                                          animationEnabled: true,
+                                          title: {
+                                              text: "Comparison Graph"
+                                          },
+                                          axisY: {
+                                              backgroundColor: "transparent",
+                                              title: "Graph details-2",
+                                              titleFontColor: "#4F81BC",
+                                              lineColor: "#4F81BC",
+                                              labelFontColor: "#4F81BC",
+                                              tickColor: "#4F81BC",
+                                              minimum: 30
+                                          },
+                                          axisY1: {
+                                              backgroundColor: "transparent",
+                                              title: "Grah details-1",
+                                              titleFontColor: "#C0504E",
+                                              lineColor: "#C0504E",
+                                              labelFontColor: "#C0504E",
+                                              tickColor: "#C0504E",
+                                              minimum:30
+                                          },	
+                                          axisY2: {
+                                              backgroundColor: "transparent",
+                                              title: "Grah details-1",
+                                              titleFontColor: "#C0504E",
+                                              lineColor: "#C0504E",
+                                              labelFontColor: "#C0504E",
+                                              tickColor: "#C0504E",
+                                              minimum:30
+                                          },	
+                                          axisY3: {
+                                              backgroundColor: "transparent",
+                                              title: "Grah details-1",
+                                              titleFontColor: "#C0504E",
+                                              lineColor: "#C0504E",
+                                              labelFontColor: "#C0504E",
+                                              tickColor: "#C0504E",
+                                              minimum:30
+                                          },	
+                                          axisY4: {
+                                              backgroundColor: "transparent",
+                                              title: "Grah details-1",
+                                              titleFontColor: "#C0504E",
+                                              lineColor: "#C0504E",
+                                              labelFontColor: "#C0504E",
+                                              tickColor: "#C0504E",
+                                              minimum:30
+                                          },	
+                                          axisY5: {
+                                              backgroundColor: "transparent",
+                                              title: "Grah details-1",
+                                              titleFontColor: "#C0504E",
+                                              lineColor: "#C0504E",
+                                              labelFontColor: "#C0504E",
+                                              tickColor: "#C0504E",
+                                              minimum:30
+                                          },	
+                                          axisY6: {
+                                              backgroundColor: "transparent",
+                                              title: "Grah details-1",
+                                              titleFontColor: "#C0504E",
+                                              lineColor: "#C0504E",
+                                              labelFontColor: "#C0504E",
+                                              tickColor: "#C0504E",
+                                              minimum:30
+                                          },	
+                                          axisY7: {
+                                              backgroundColor: "transparent",
+                                              title: "Grah details-1",
+                                              titleFontColor: "#C0504E",
+                                              lineColor: "#C0504E",
+                                              labelFontColor: "#C0504E",
+                                              tickColor: "#C0504E",
+                                              minimum:30
+                                          },	
+                                          // ... (other axisY settings)
+                                          toolTip: {
+                                              shared: true
+                                          },
+                                          legend: {
+                                              cursor: "pointer",
+                                              itemclick: toggleDataSeries
+                                          },
+                                          backgroundColor: "transparent",
+                                          data: [
+                                              {
+                                                  type: "column",
+                                                  name: "Accuracy",
+                                                  legendText: "",
+                                                  showInLegend: true,
+                                                  dataPoints: [
+                              
+                                                  { label: "XGBoost Algo", y: {{ada}}, color: "rgba(0, 171, 169, 0.5)" },
+                                                 
+                                                  { label: "Linear Regression Algo", y: {{gst}}, color: "rgba(0, 171, 169, 0.5)" },
+                                                      
+                                                  ]
+                                              }
+                                          ]
+                                      });
+                              
+                                      chart.render();
+                              
+                                      function toggleDataSeries(e) {
+                                          if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                                              e.dataSeries.visible = false;
+                                          } else {
+                                              e.dataSeries.visible = true;
+                                          }
+                                          chart.render();
+                                      }
+                                  }
+                              </script>
+                              
+                                  <div id="chartContainer" class="ml-3 mb-5" style="height: 400px;width:1000px;"></div>
+                                  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                          </div>
+                              
+                          <!-- Chart End -->
+                          
+                      </div>
+      </div>
+</div>
+</div>
+</div>
+
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright © Designed &amp; Developed by <a href="https://www.codebook.in/" target="_blank">Codebook</a> 2023</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+        
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!--**********************************
+        Scripts
+    ***********************************-->
+     <!-- Required vendors -->
+     <script src="{% static 'adminstatic/vendor/global/global.min.js' %}"></script>
+     <script src="{% static 'adminstatic/js/quixnav-init.js' %}"></script>
+     <script src="{% static 'adminstatic/js/custom.min.js' %}"></script>
+ 
+ 
+     <!-- Vectormap -->
+     <script src="{% static 'adminstatic/vendor/raphael/raphael.min.js' %}"></script>
+     <script src="{% static 'adminstatic/vendor/morris/morris.min.js' %}"></script>
+ 
+ 
+     <script src="{% static 'adminstatic/vendor/circle-progress/circle-progress.min.js' %}"></script>
+     <script src="{% static 'adminstatic/vendor/chart.js/Chart.bundle.min.js' %}"></script>
+ 
+     <script src="{% static 'adminstatic/vendor/gaugeJS/dist/gauge.min.js' %}"></script>
+ 
+     <!--  flot-chart js -->
+     <script src="{% static 'adminstatic/vendor/flot/jquery.flot.js' %}"></script>
+     <script src="{% static 'adminstatic/vendor/flot/jquery.flot.resize.js' %}"></script>
+ 
+     <!-- Owl Carousel -->
+     <script src="{% static 'adminstatic/vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+ 
+     <!-- Counter Up -->
+     <script src="{% static 'adminstatic/vendor/jqvmap/js/jquery.vmap.min.js' %}"></script>
+     <script src="{% static 'adminstatic/vendor/jqvmap/js/jquery.vmap.usa.js' %}"></script>
+     <script src="{% static 'adminstatic/vendor/jquery.counterup/jquery.counterup.min.js' %}"></script>
+ 
+ 
+     <script src="{% static 'adminstatic/js/dashboard/dashboard-1.js' %}"></script>
+ 
+ </body>
+ 
+ </html>

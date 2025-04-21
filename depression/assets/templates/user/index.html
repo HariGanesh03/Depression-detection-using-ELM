@@ -1,0 +1,459 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>Depression</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="{% static 'userstatic/img/core-img/favicon.ico' %}">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'userstatic/style.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="medilife-load"></div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area">
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <div class="h-100 d-md-flex justify-content-between align-items-center">
+                            <a href="https://www.codebook.in/"><p>Welcome To <span>rgtech.projects@gmail.com </span></p></a>
+                            <p>Opening Hours : Monday to Saturday - 10am to 7pm - Contact : <span>+91 8500221170</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header Area -->
+        <div class="main-header-area" id="stickyHeader">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 h-100">
+                        <div class="main-menu h-100">
+                            <nav class="navbar h-100 navbar-expand-lg">
+                                <!-- Logo Area  -->
+                                <a class="navbar-brand" href="{% url "index" %}"><img src="{% static 'userstatic/img/mainlogo.png' %}" alt="Logo" width="200px" height="200px"></a>
+
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medilifeMenu" aria-controls="medilifeMenu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+                                <div class="collapse navbar-collapse" id="medilifeMenu">
+                                    <!-- Menu Area -->
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="{% url "index" %}">Home <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url "about" %}">About Us</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url "login" %}">User Login</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url "admin" %}">Admin Login</a>
+                                        </li>
+                                       
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url "contact" %}">Contact</a>
+                                        </li>
+                                    </ul>
+                                    <!-- Appointment Button -->
+                                    <a href="{% url "register" %}" class="btn medilife-appoint-btn ml-30"><span>Register</span></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Hero Area Start ***** -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide bg-img bg-overlay-white" style="background-image: url({% static 'userstatic/img/bg-img/hero1.jpg' %});">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <h2 data-animation="fadeInUp" data-delay="100ms">Medical Services that <br>You can Trust 100%</h2>
+                                <h6 data-animation="fadeInUp" data-delay="400ms">We specialize in early detection and management of depression.</h6>
+                                <a href="#" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Discover Medifile <span>+</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide bg-img bg-overlay-white" style="background-image: url({% static 'userstatic/img/bg-img/breadcumb3.jpg' %});">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <h2 data-animation="fadeInUp" data-delay="100ms">Medical Services that <br>You can Trust 100%</h2>
+                                <h6 data-animation="fadeInUp" data-delay="400ms">We specialize in early detection and management of depression.</h6>
+                                <a href="#" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Discover Medifile <span>+</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide bg-img bg-overlay-white" style="background-image: url({% static 'userstatic/img/bg-img/breadcumb1.jpg' %});">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <h2 data-animation="fadeInUp" data-delay="100ms">Medical Services that <br>You can Trust 100%</h2>
+                                <h6 data-animation="fadeInUp" data-delay="400ms">We specialize in early detection and management of depression.</h6>
+                                <a href="#" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Discover Medifile <span>+</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Hero Area End ***** -->
+
+    <!-- ***** About Us Area Start ***** -->
+    <section class="medica-about-us-area section-padding-100-20">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <div class="medica-about-content">
+                        <h2>We always put our patients first</h2>
+                        <p>Depression detection is crucial for timely intervention and effective treatment. Our innovative screening tools help identify individuals at risk, allowing for early diagnosis and personalized care plans. We focus on creating a supportive environment for our patients, ensuring they receive the best possible care.</p>
+                        <a href="#" class="btn medilife-btn mt-50">View the services <span>+</span></a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-8">
+                    <div class="row">
+                        <!-- Single Service Area -->
+                        <div class="col-12 col-sm-6">
+                            <div class="single-service-area d-flex">
+                                <div class="service-icon">
+                                    <i class="icon-doctor"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5>The Best Doctors</h5>
+                                    <p>Our team includes top psychiatrists and therapists specializing in depression care and management.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Service Area -->
+                        <div class="col-12 col-sm-6">
+                            <div class="single-service-area d-flex">
+                                <div class="service-icon">
+                                    <i class="icon-blood-donation-1"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5>Depression Nursery</h5>
+                                    <p>A safe space for patients to receive care and support, focusing on holistic recovery.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Service Area -->
+                        <div class="col-12 col-sm-6">
+                            <div class="single-service-area d-flex">
+                                <div class="service-icon">
+                                    <i class="icon-pharmacy"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5>Pharmacy Store</h5>
+                                    <p>We provide easy access to medications and supplements specifically for depression management.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Service Area -->
+                        <div class="col-12 col-sm-6">
+                            <div class="single-service-area d-flex">
+                                <div class="service-icon">
+                                    <i class="icon-diagnosis"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5>Diagnosis</h5>
+                                    <p>Comprehensive assessments and screenings for accurate diagnosis and tailored treatment plans.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Service Area -->
+                        <div class="col-12 col-sm-6">
+                            <div class="single-service-area d-flex">
+                                <div class="service-icon">
+                                    <i class="icon-friends"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5>Child Care</h5>
+                                    <p>Specialized services for children facing depression, providing them with the support they need.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Service Area -->
+                        <div class="col-12 col-sm-6">
+                            <div class="single-service-area d-flex">
+                                <div class="service-icon">
+                                    <i class="icon-patient"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5>Patient Experience</h5>
+                                    <p>We prioritize patient feedback to continually enhance the quality of our depression care services.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** About Us Area End ***** -->
+
+    
+    <!-- ***** Emergency Area Start ***** -->
+    <div class="medilife-emergency-area section-padding-100-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="emergency-content">
+                        <i class="icon-smartphone"></i>
+                        <h2>For Emergency calls</h2>
+                        <h3>+91 850-011-2270</h3>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="row">
+                        <!-- Single Emergency Helpline -->
+                        <div class="col-12 col-sm-6">
+                            <div class="single-emergency-helpline mb-50">
+                                <h5>India/h5>
+                                <p>+91 850-011-2270<br> contact@rhtech.com <br> Lamas Str, no 14-18 <br> 41770 Rajahmundry</p>
+                            </div>
+                        </div>
+                        <!-- Single Emergency Helpline -->
+                        <div class="col-12 col-sm-6">
+                            <div class="single-emergency-helpline mb-50">
+                                <h5>India/h5>
+                                <p>+91 850-011-2270<br> contact@rhtech.com <br> Lamas Str, no 14-18 <br> 41770 Rajahmundry</p>
+                            </div>
+                        </div>
+                        <!-- Single Emergency Helpline -->
+                        <div class="col-12 col-sm-6">
+                            <div class="single-emergency-helpline mb-50">
+                                <h5>India/h5>
+                                <p>+91 850-011-2270<br> contact@rhtech.com <br> Lamas Str, no 14-18 <br> 41770 Rajahmundry</p>
+                            </div>
+                        </div>
+                        <!-- Single Emergency Helpline -->
+                        <div class="col-12 col-sm-6">
+                            <div class="single-emergency-helpline mb-50">
+                                <h5>India/h5>
+                                <p>+91 850-011-2270<br> contact@rhtech.com <br> Lamas Str, no 14-18 <br> 41770 Rajahmundry</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Emergency Area End ***** -->
+
+    <!-- ***** Footer Area Start ***** -->
+<footer class="footer-area section-padding-100">
+    <!-- Main Footer Area -->
+    <div class="main-footer-area">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="footer-widget-area">
+                        <div class="footer-logo">
+                            <img src="{% static 'userstatic/img/mainlogo.png' %}" width="200px" height="200px" alt="">
+                        </div>
+                        <p>At our clinic, we focus on understanding and addressing the complexities of depression. Our compassionate team is dedicated to helping individuals find their way to recovery through tailored treatment plans and support.</p>
+                        <div class="footer-social-info">
+                            <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="footer-widget-area">
+                        <div class="widget-title">
+                            <h6>Latest News</h6>
+                        </div>
+                        <div class="widget-blog-post">
+                            <!-- Single Blog Post -->
+                            <div class="widget-single-blog-post d-flex">
+                                <div class="widget-post-thumbnail">
+                                    <img src="{% static 'userstatic/img/blog-img/ln1.jpg' %}" alt="">
+                                </div>
+                                <div class="widget-post-content">
+                                    <a href="#">Understanding Depression: A Comprehensive Guide</a>
+                                    <p>Dec 02, 2023</p>
+                                </div>
+                            </div>
+                            <!-- Single Blog Post -->
+                            <div class="widget-single-blog-post d-flex">
+                                <div class="widget-post-thumbnail">
+                                    <img src="{% static 'userstatic/img/blog-img/ln2.jpg' %}" alt="">
+                                </div>
+                                <div class="widget-post-content">
+                                    <a href="#">New Approaches to Depression Treatment</a>
+                                    <p>Dec 02, 2023</p>
+                                </div>
+                            </div>
+                            <!-- Single Blog Post -->
+                            <div class="widget-single-blog-post d-flex">
+                                <div class="widget-post-thumbnail">
+                                    <img src="{% static 'userstatic/img/blog-img/ln3.jpg' %}" alt="">
+                                </div>
+                                <div class="widget-post-content">
+                                    <a href="#">Tips for Managing Depression Daily</a>
+                                    <p>Dec 02, 2023</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="footer-widget-area">
+                        <div class="widget-title">
+                            <h6>Contact Details</h6>
+                        </div>
+                        <div class="footer-contact-form">
+                            <div class="widget-post-content">
+                                <a href="#">Gandhi Colony, Rajahmundry.</a>
+                                <p>#2nd Floor, Siris Rd, Rajahmundry A1662.</p>
+                            </div>
+                            <div class="widget-post-content">
+                                <a href="#">+91 855 588 7986</a>
+                                <p>Mon to Fri 9am to 6pm</p>
+                            </div>
+                            <div class="widget-post-content">
+                                <a href="#">rgtech.projects@gmail.com</a>
+                                <p>Send us your query anytime!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="footer-widget-area">
+                        <div class="widget-title">
+                            <h6>News Letter</h6>
+                        </div>
+
+                        <div class="footer-newsletter-area">
+                            <form action="#">
+                                <input type="email" class="form-control border-0 mb-0" name="newsletterEmail" id="newsletterEmail" placeholder="Your Email Here">
+                                <button type="submit">Subscribe</button>
+                            </form>
+                            <p>Stay updated with our latest insights and tips on managing depression and mental health. Join our newsletter to receive valuable information directly in your inbox.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bottom Footer Area -->
+    <div class="bottom-footer-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bottom-footer-content">
+                        <!-- Copyright Text -->
+                        <div class="copywrite-text">
+                            <p style='color:white;'><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with<span style='color:blue;'> <i class="fa fa-heart-o" aria-hidden="true"></i></span> by <a href="https://www.code" target="_blank"><span style='color:blue;'>rgtech</span></a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+<p style='color:white;'>Re-distributed by <a href="https://www.codeb" target="_blank"><span style='color:blue;'>Rgtech Developers</span></a>
+</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ***** Footer Area End ***** -->
+
+<!-- jQuery (Necessary for All JavaScript Plugins) -->
+<script src="{% static 'userstatic/js/jquery/jquery-2.2.4.min.js' %}"></script>
+<!-- Popper js -->
+<script src="{% static 'userstatic/js/popper.min.js' %}"></script>
+<!-- Bootstrap js -->
+<script src="{% static 'userstatic/js/bootstrap.min.js' %}"></script>
+<!-- Plugins js -->
+<script src="{% static 'userstatic/js/plugins.js' %}"></script>
+<!-- Active js -->
+<script src="{% static 'userstatic/js/active.js' %}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<script>swal({
+    title: "Success!",
+    text: "{{message}}",
+    icon: "success",
+    button: "OK",
+});
+</script>
+
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+<script>swal({
+    title: "Warning :)",
+    text: "{{message}}",
+    icon: "warning",
+    button: "OK",
+    
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<script>swal({
+    title: "info :)",
+    text: "{{message}}",
+    icon: "info",
+    button: "OK",
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>swal({
+    title: "error :)",
+    text: "{{message}}",
+    icon: "error",
+    button: "OK",
+});
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+</body>
+
+</html>
